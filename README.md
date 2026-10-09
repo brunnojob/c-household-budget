@@ -1,27 +1,31 @@
 # Household Budget
 
-Consolidação de receitas e despesas por mês e categoria, com valores inteiros em centavos e validação estrita de datas e registros.
+Monthly income and expense totals by category, using integer cents and strict date and record validation.
 
-## Executar
+## Run
 
-Requisitos: C17.
+Requirements: C17.
 
 ```sh
 make
-build/budget ledger.txt 2026-10 > resultado.json
+build/budget ledger.txt 2026-10 > result.json
 ```
 
-## Funcionamento
+## Behavior
 
-Formato: `data|categoria|valor|descrição|income` ou `expense`. Sem o quinto campo, o registro é uma despesa. Exemplo: `2026-10-09|alimentacao|35.90|mercado|expense`. Linhas inválidas interrompem o relatório.
+Input format: `date|category|amount|description|income` or `expense`. A record without the fifth field is treated as an expense. Example: `2026-10-09|food|35.90|groceries|expense`. Invalid lines stop report generation.
 
-## Persistência de resultados
+## Result synchronization
 
-O arquivo de operações está em [vercel-home-telemetry-api.vercel.app](https://vercel-home-telemetry-api.vercel.app/laboratory.html?project=c-household-budget). As migrações Supabase estão no [repositório da API](https://github.com/brunnojob/vercel-home-telemetry-api/tree/main/supabase/migrations).
+The [operations archive](https://vercel-home-telemetry-api.vercel.app/laboratory.html?project=c-household-budget) stores execution results. Supabase migrations are in the [API repository](https://github.com/brunnojob/vercel-home-telemetry-api/tree/main/supabase/migrations).
 
 ```sh
-python cloud/sync.py enqueue resultado.json --project c-household-budget
+python cloud/sync.py enqueue result.json --project c-household-budget
 python cloud/sync.py sync
 ```
 
-Defina `BRUNNODEV_ACCESS_TOKEN` com sua sessão. A fila SQLite conserva os relatórios até confirmação do servidor; o mesmo conteúdo não gera registros duplicados. Tokens não são gravados no código.
+Set `BRUNNODEV_ACCESS_TOKEN` to your session token. The SQLite outbox retains reports until the server confirms persistence; identical content does not create duplicate records. Tokens are not stored in source code. To run the synchronization tests:
+
+```sh
+python -m unittest discover -s cloud
+```
