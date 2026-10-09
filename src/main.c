@@ -162,7 +162,26 @@ int main(int argc, char **argv) {
     }
     if (ledger.count)
         qsort(ledger.items, ledger.count, sizeof(Bucket), compare);
-    printf("{\"currency\":\"BRL\",\"buckets\":[");
+    int64_t total_income = 0, total_expense = 0;
+    size_t total_entries = 0;
+    for (size_t i = 0; i < ledger.count; i++) {
+        Bucket *b = &ledger.items[i];
+        if (argc == 3 && strcmp(argv[2], b->month))
+            continue;
+        if (total_income > INT64_MAX - b->income || total_expense > INT64_MAX - b->expense ||
+            total_entries > SIZE_MAX - b->entries) {
+            fprintf(stderr, "summary exceeds integer capacity\n");
+            free(ledger.items);
+            return 2;
+        }
+        total_income += b->income;
+        total_expense += b->expense;
+        total_entries += b->entries;
+    }
+    printf("{\"currency\":\"BRL\",\"summary\":{\"incomeMinor\":%" PRId64
+           ",\"expenseMinor\":%" PRId64 ",\"netMinor\":%" PRId64
+           ",\"entries\":%zu},\"buckets\":[", total_income, total_expense,
+           total_income - total_expense, total_entries);
     size_t printed = 0;
     for (size_t i = 0; i < ledger.count; i++) {
         Bucket *b = &ledger.items[i];
