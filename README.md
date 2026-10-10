@@ -27,7 +27,7 @@ Original source and documentation are MIT licensed; see [LICENSE](LICENSE). Thir
 
 Reports include an integer-cent summary with income, expense, net and entry count for the selected month or complete ledger. Aggregated totals are checked for overflow before any JSON is emitted.
 
-Contribution trailer: `Co-authored-by: nyctophile <329826984+ineedfoundmyway@users.noreply.github.com>`.
+Contribution trailer: `Co-authored-by: nyctophile <33561761+ineedfoundmyway@users.noreply.github.com>`.
 
 ## Execution proof
 
