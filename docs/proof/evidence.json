@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "repository": "brunnojob/c-household-budget",
-  "source_commit": "d335c384cbd7280a1f73d095f5ec47de96bb6ec9",
-  "generated_at": "2026-10-10T02:35:41.154874+00:00",
-  "run_url": "https://github.com/brunnojob/c-household-budget/actions/runs/38017531720",
+  "source_commit": "9a2b1d0e9e2256b549ea396fa30de68170d32b85",
+  "generated_at": "2026-10-10T02:44:01.502034+00:00",
+  "run_url": "https://github.com/brunnojob/c-household-budget/actions/runs/38018024042",
   "inputs_sha256": {
     ".proof/scenarios.json": "67c7d773ef298525d4813c26b374669b4de1620f97ca9563d145a6ca6c547979",
     ".proof/demo.py": "e2ba7f8faaec31caee5111d7315b1abb510a244b1d5ca662aa2656bce48ff623"
@@ -23,7 +23,7 @@
       "exit": 0,
       "expected_exit": 0,
       "passed": true,
-      "seconds": 0.251,
+      "seconds": 0.402,
       "output": "mkdir -p build\ncc -std=c17 -O2 -Wall -Wextra -Wpedantic -Werror src/main.c -o build/budget\n",
       "output_sha256": "09b7d2c687b237d3a082f39f5785c542d169fcd3556e93a4c5965d43c235f084"
     },
