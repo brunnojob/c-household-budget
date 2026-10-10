@@ -1,0 +1,7 @@
+$ bash -e -o pipefail -c make
+mkdir -p build
+cc -std=c17 -O2 -Wall -Wextra -Wpedantic -Werror src/main.c -o build/budget
+
+$ python .proof/demo.py
+{"buckets": [{"category": "food", "entries": 2, "expenseMinor": 15000, "incomeMinor": 0, "month": "2026-10", "netMinor": -15000}, {"category": "salary", "entries": 1, "expenseMinor": 0, "incomeMinor": 100000, "month": "2026-10", "netMinor": 100000}], "currency": "BRL", "summary": {"entries": 3, "expenseMinor": 15000, "incomeMinor": 100000, "netMinor": 85000}}
+invalid calendar date rejected

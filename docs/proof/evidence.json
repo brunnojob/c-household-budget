@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "repository": "brunnojob/c-household-budget",
+  "source_commit": "d335c384cbd7280a1f73d095f5ec47de96bb6ec9",
+  "generated_at": "2026-10-10T02:35:41.154874+00:00",
+  "run_url": "https://github.com/brunnojob/c-household-budget/actions/runs/38017531720",
+  "inputs_sha256": {
+    ".proof/scenarios.json": "67c7d773ef298525d4813c26b374669b4de1620f97ca9563d145a6ca6c547979",
+    ".proof/demo.py": "e2ba7f8faaec31caee5111d7315b1abb510a244b1d5ca662aa2656bce48ff623"
+  },
+  "cases": [
+    {
+      "display": false,
+      "name": "make",
+      "argv": [
+        "bash",
+        "-e",
+        "-o",
+        "pipefail",
+        "-c",
+        "make"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "seconds": 0.251,
+      "output": "mkdir -p build\ncc -std=c17 -O2 -Wall -Wextra -Wpedantic -Werror src/main.c -o build/budget\n",
+      "output_sha256": "09b7d2c687b237d3a082f39f5785c542d169fcd3556e93a4c5965d43c235f084"
+    },
+    {
+      "display": true,
+      "name": "Budget aggregation and invalid calendar input",
+      "argv": [
+        "python",
+        ".proof/demo.py"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "seconds": 0.051,
+      "output": "{\"buckets\": [{\"category\": \"food\", \"entries\": 2, \"expenseMinor\": 15000, \"incomeMinor\": 0, \"month\": \"2026-10\", \"netMinor\": -15000}, {\"category\": \"salary\", \"entries\": 1, \"expenseMinor\": 0, \"incomeMinor\": 100000, \"month\": \"2026-10\", \"netMinor\": 100000}], \"currency\": \"BRL\", \"summary\": {\"entries\": 3, \"expenseMinor\": 15000, \"incomeMinor\": 100000, \"netMinor\": 85000}}\ninvalid calendar date rejected\n",
+      "output_sha256": "a0a4defd4f18c969cffb1eec2dd933b63777e97eab268e1af3536c3e8d9b8485"
+    }
+  ],
+  "passed": true
+}
